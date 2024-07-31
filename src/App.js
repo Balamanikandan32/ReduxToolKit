@@ -1,4 +1,4 @@
-import ReduxToolKit from "./Components/ReduxToolKit"
+import {ReduxToolKit} from "./Components/ReduxToolKit"
 
 function App() {
   return (
