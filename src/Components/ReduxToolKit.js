@@ -7,13 +7,17 @@ const ReduxToolKit = ()=> {
         </div>
     )
 }
-const initialState = {
+const initialCakeState = {
     numOfCakes : 10,
+}
+
+const initialIcecreamState = {
+    numOfIcecream : 20,
 }
 
 const cakeSlice = createSlice({
     name: "cake",
-    initialState,
+    initialState:initialCakeState,
     reducers : {
         ordered: (state,action)=>{
             state.numOfCakes--
@@ -24,9 +28,22 @@ const cakeSlice = createSlice({
     }
 })
 
+const IcecreamSlice = createSlice({
+    name: "icecream",
+    initialState:initialIcecreamState,
+    reducers: {
+        ordered:(state,action)=>{
+            state.numOfIcecream--
+        },
+        restocked:(state,action)=>{
+            state.numOfIcecream+= action.payload
+        }
+    }
+})
 const store = configureStore({
     reducer:{
-        cake:cakeSlice.reducer
+        cake:cakeSlice.reducer,
+        icecream: IcecreamSlice.reducer,
     },
 })
 
@@ -36,6 +53,9 @@ const unsubscribe = store.subscribe(()=> console.log("updated state",store.getSt
 
 store.dispatch(cakeSlice.actions.ordered())
 store.dispatch(cakeSlice.actions.restocked(5))
+store.dispatch(IcecreamSlice.actions.ordered())
+store.dispatch(IcecreamSlice.actions.restocked(3))
+
 
 
 export const {ordered, restocked}=cakeSlice.actions
