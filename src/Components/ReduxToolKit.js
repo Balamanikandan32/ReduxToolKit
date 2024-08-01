@@ -38,6 +38,11 @@ const IcecreamSlice = createSlice({
         restocked:(state,action)=>{
             state.numOfIcecream+= action.payload
         }
+    },
+    extraReducers: (builder)=>{
+        builder.addCase(cakeSlice.actions.ordered,(state,action)=>{
+            state.numOfIcecream--
+        })
     }
 })
 const store = configureStore({
