@@ -3,6 +3,7 @@ import {
   createAsyncThunk,
   createSlice,
 } from "@reduxjs/toolkit";
+import logger from "redux-logger";
 
 const ReduxToolKit = () => {
   return (
@@ -81,6 +82,7 @@ const store = configureStore({
     icecream: IcecreamSlice.reducer,
     users:userSlice.reducer,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger)
 });
 
 console.log("initial state", store.getState());
