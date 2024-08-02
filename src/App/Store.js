@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import cakeSlice from "../Features/Cake/cakeSlice";
 import icecreamSlice from "../Features/Icecream/icecreamSlice";
 import userSlice from "../Features/Users/userSlice";
+import logger from "redux-logger";
 
 
 const store = configureStore({
